@@ -3,6 +3,6 @@
   grid-template-rows: 282px auto;
   grid-template-columns: 282px;
   background-color: #fff;
-  border-radius: 3%;
+  border-radius: 10px;
   overflow: hidden;
 }

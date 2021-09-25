@@ -1,8 +1,7 @@
 .add-button {
-  background-image: url('../../images/Add\ Button.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  object-fit: cover;
+  object-position: center;
   background-color: rgba(0, 0, 0, 0);
-  border: none;
+  border: solid #fff 2px;
+  border-radius: 2px;
 }
