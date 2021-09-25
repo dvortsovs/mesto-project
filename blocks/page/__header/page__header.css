@@ -1,0 +1,5 @@
+.page__header {
+  width: calc(100% - 400px);
+  box-sizing: border-box;
+  margin: 45px auto 0;
+}

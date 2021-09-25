@@ -1,0 +1,8 @@
+.avatar {
+  background-image: url('../../images/avatar.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+}

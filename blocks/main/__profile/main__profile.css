@@ -1,0 +1,4 @@
+.main__profile {
+  width: calc(100% - 400px);
+  margin: 40px auto 0;
+}
