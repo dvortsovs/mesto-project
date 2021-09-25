@@ -1,11 +1,9 @@
 .content-card__title {
-  width: 70%;
   color: #000;
   font-size: 24px;
   font-weight: 900;
   line-height: 29px;
   margin: 0 0 0 21px;
-  padding: 25px 0 32px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
