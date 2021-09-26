@@ -3,6 +3,9 @@
 @import url('../blocks/page/page.css');
 @import url('../blocks/page/__header/page__header.css');
 @import url('../blocks/page/__footer/page__footer.css');
+@import url('../blocks/page/__button/page__button.css');
+@import url('../blocks/page/__button/_type/page__button_type_save.css');
+@import url('../blocks/page/__button/_type/page__button_type_like.css');
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/__close-button/popup__close-button.css');
 @import url('../blocks/popup/_opened/popup_opened.css');

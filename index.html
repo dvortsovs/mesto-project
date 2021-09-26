@@ -10,7 +10,7 @@
 </head>
 
 <body class="page">
-  <div class="popup popup_opened">
+  <div class="popup">
     <div class="popup__container">
       <button class="close-button popup__close-button page__button"></button>
       <div class="popup__content">
@@ -18,10 +18,9 @@
         <form action="url" class="popup__form" method="POST">
           <fieldset class="popup__input-container">
             <input name="name" type="text" class="popup__input" value="Жак-Ив Кусто">
-            <input name="caption" type="text" class="popup__input"
-              value="Исследователь океана">
+            <input name="caption" type="text" class="popup__input" value="Исследователь океана">
           </fieldset>
-          <button class="save-button popup__save-button page__button">Сохранить</button>
+          <button class="save-button popup__save-button page__button page__button_type_save">Сохранить</button>
         </form>
       </div>
     </div>
@@ -49,42 +48,43 @@
           <img class="content-card__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Фото места">
           <div class="content-card__description">
             <h2 class="content-card__title">Карачаевск</h2>
-            <button class="like-button content-card__like-button page__button"></button>
+            <button class="like-button content-card__like-button page__button page__button_type_like"></button>
           </div>
         </li>
         <li class="content-card elements__content-card">
           <img class="content-card__image" src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Фото места">
           <div class="content-card__description">
             <h2 class="content-card__title">Гора Эльбрус</h2>
-            <button class="like-button content-card__like-button page__button"></button>
+            <button class="like-button content-card__like-button page__button page__button_type_like"></button>
           </div>
         </li>
         <li class="content-card elements__content-card">
           <img class="content-card__image" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Фото места">
           <div class="content-card__description">
             <h2 class="content-card__title">Домбай</h2>
-            <button class="like-button content-card__like-button page__button"></button>
+            <button class="like-button content-card__like-button page__button page__button_type_like"></button>
           </div>
         </li>
         <li class="content-card elements__content-card">
           <img class="content-card__image" src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Фото места">
           <div class="content-card__description">
             <h2 class="content-card__title">Гора Эльбрус</h2>
-            <button class="like-button content-card__like-button page__button"></button>
+            <button class="like-button content-card__like-button page__button page__button_type_like"></button>
           </div>
         </li>
         <li class="content-card elements__content-card">
           <img class="content-card__image" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Фото места">
           <div class="content-card__description">
             <h2 class="content-card__title">Домбай</h2>
-            <button class="like-button content-card__like-button page__button"></button>
+            <button class="like-button content-card__like-button page__button page__button_type_like"></button>
           </div>
         </li>
         <li class="content-card elements__content-card">
           <img class="content-card__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Фото места">
           <div class="content-card__description">
             <h2 class="content-card__title">Карачаево-Черкессия</h2>
-            <button class="like-button like-button_active content-card__like-button page__button"></button>
+            <button
+              class="like-button like-button_active content-card__like-button page__button page__button_type_like"></button>
           </div>
         </li>
       </ul>
