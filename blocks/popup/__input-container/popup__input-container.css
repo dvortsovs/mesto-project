@@ -1,0 +1,11 @@
+.popup__input-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: min-content min-content;
+  gap: 30px;
+}
