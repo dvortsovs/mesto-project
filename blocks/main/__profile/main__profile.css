@@ -2,3 +2,9 @@
   width: calc(100% - 400px);
   margin: 40px auto 0;
 }
+@media  screen and (max-width: 1100px) {
+  .main__profile {
+    width: 100%;
+    margin: 42px auto 0;
+  }
+}
