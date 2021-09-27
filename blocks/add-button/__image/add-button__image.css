@@ -2,7 +2,7 @@
   width: 22px;
   height: 22px;
 }
-@media  screen and (max-width: 380px) {
+@media screen and (max-width: 380px) {
   .add-button__image {
     width: 16px;
     height: 16px;

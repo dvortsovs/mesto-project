@@ -6,7 +6,7 @@
   font-weight: 500;
   line-height: 48px;
 }
-@media  screen and (max-width: 380px) {
+@media screen and (max-width: 380px) {
   .profile__name {
     padding-left: 28px;
     font-size: 27px;
