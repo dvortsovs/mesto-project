@@ -7,3 +7,10 @@
   border-radius: 10px;
   position: relative;
 }
+@media  screen and (max-width: 550px) {
+  .popup__container {
+    width: calc(100% - 38px);
+    height: 322px;
+    margin: 0 auto;
+  }
+}

@@ -8,3 +8,9 @@
   border: none;
   box-sizing: border-box;
 }
+@media  screen and (max-width: 550px) {
+  .save-button {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
