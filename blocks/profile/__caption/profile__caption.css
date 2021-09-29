@@ -1,10 +1,15 @@
 .profile__caption {
-  margin: 16px 0 0;
+  max-width: 210px;
+  order: 3;
+  margin: 0;
   padding: 0;
   color: #fff;
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 @media screen and (max-width: 1100px) {
   .profile__caption {
@@ -15,6 +20,5 @@
   .profile__caption {
     font-size: 14px;
     line-height: 17px;
-    margin: 14px 0 0;
   }
 }
