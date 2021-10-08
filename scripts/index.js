@@ -1,4 +1,32 @@
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 const container = document.querySelector('.page');
+const elementsList = container.querySelector('.elements__list')
 const editButton = container.querySelector('.profile__edit-button');
 const saveButton = container.querySelector('.popup__save-button');
 const addButton = container.querySelector('.profile__add-button');
@@ -16,6 +44,16 @@ const addForm = popupList[1].querySelector('.popup__form');
 const inputTitle = addForm.querySelector('input[name=title]');
 const inputLink = addForm.querySelector('input[name=link]');
 
+function addCard(title, src) {
+  const cardTemplate = container.querySelector('#content-card').content;
+  const cardElement = cardTemplate.querySelector('.content-card').cloneNode(true);
+
+  cardElement.querySelector('.content-card__title').textContent = title;
+  cardElement.querySelector('.content-card__image').src = src;
+
+  elementsList.prepend(cardElement);
+}
+
 function showHidePopup(popup) {
   popup.classList.toggle('popup_opened');
 }
@@ -29,7 +67,10 @@ function editFormSubmitHandler(evt) {
 
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
+  addCard(inputTitle.value, inputLink.value);
   showHidePopup(addPopup);
+  inputTitle.value = '';
+  inputLink.value = '';
 }
 
 editButton.addEventListener('click', function () {
@@ -37,6 +78,8 @@ editButton.addEventListener('click', function () {
   inputCaption.value = profileCaption.textContent;
   showHidePopup(editPopup);
 });
+
+initialCards.reverse().forEach(item => addCard(item.name, item.link));
 
 addButton.addEventListener('click', () => showHidePopup(addPopup));
 closeEditPopup.addEventListener('click', () => showHidePopup(editPopup));
