@@ -1,6 +1,8 @@
 .profile__caption {
   max-width: 210px;
   order: 3;
+  grid-column-start: 1;
+  grid-column-end: 3;
   margin: 0;
   padding: 0;
   color: #fff;
@@ -13,6 +15,7 @@
 }
 @media screen and (max-width: 1100px) {
   .profile__caption {
+    margin: 0 auto;
     text-align: center;
   }
 }
