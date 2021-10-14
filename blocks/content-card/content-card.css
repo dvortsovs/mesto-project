@@ -1,4 +1,5 @@
 .content-card {
+  position: relative;
   display: grid;
   grid-template-rows: 282px auto;
   grid-template-columns: 282px;

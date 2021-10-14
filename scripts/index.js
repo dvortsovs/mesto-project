@@ -24,8 +24,11 @@ function addCard(title, src) {
   cardElement.querySelector('.content-card__title').textContent = title;
   cardElement.querySelector('.content-card__image').src = src;
   cardElement.querySelector('.content-card__like-button').addEventListener('click', function (evt) {
-  evt.target.classList.toggle('content-card__like-button_active')
+    evt.target.classList.toggle('content-card__like-button_active')
 });
+  cardElement.querySelector('.content-card__delete-button').addEventListener('click', function (evt) {
+    evt.target.parentElement.remove();
+  });
   elementsList.prepend(cardElement);
 }
 
