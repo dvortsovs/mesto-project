@@ -1,0 +1,7 @@
+.popup__container_type_image {
+  width: auto;
+  height: calc(100vh - 158px);
+  margin: 90px auto 0;
+  font-size: 0;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}

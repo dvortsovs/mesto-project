@@ -6,8 +6,10 @@ const addButton = container.querySelector('.profile__add-button');
 const popupList = container.querySelectorAll('.popup');
 const editPopup = popupList[0];
 const addPopup = popupList[1];
+const imagePopup = popupList[2];
 const closeEditPopup = popupList[0].querySelector('.popup__close-button');
 const closeAddPopup = popupList[1].querySelector('.popup__close-button');
+const closeImagePopup = popupList[2].querySelector('.popup__close-button');
 const profileName = container.querySelector('.profile__name');
 const profileCaption = container.querySelector('.profile__caption');
 const editForm = popupList[0].querySelector('.popup__form');
@@ -16,6 +18,8 @@ const inputCaption = editForm.querySelector('input[name=caption]');
 const addForm = popupList[1].querySelector('.popup__form');
 const inputTitle = addForm.querySelector('input[name=title]');
 const inputLink = addForm.querySelector('input[name=link]');
+let srcPopupImage = imagePopup.querySelector('.popup__image');
+let titlePopupImage = imagePopup.querySelector('.popup__title');
 
 function addCard(title, src) {
   const cardTemplate = container.querySelector('#content-card').content;
@@ -23,6 +27,11 @@ function addCard(title, src) {
 
   cardElement.querySelector('.content-card__title').textContent = title;
   cardElement.querySelector('.content-card__image').src = src;
+  cardElement.querySelector('.content-card__image').addEventListener('click', function () {
+    srcPopupImage.src = src;
+    titlePopupImage.textContent = title;
+    showHidePopup(imagePopup);
+  });
   cardElement.querySelector('.content-card__like-button').addEventListener('click', function (evt) {
     evt.target.classList.toggle('content-card__like-button_active')
 });
@@ -62,5 +71,6 @@ initialCards.reverse().forEach(item => addCard(item.name, item.link));
 addButton.addEventListener('click', () => showHidePopup(addPopup));
 closeEditPopup.addEventListener('click', () => showHidePopup(editPopup));
 closeAddPopup.addEventListener('click', () => showHidePopup(addPopup));
+closeImagePopup.addEventListener('click', () => showHidePopup(imagePopup));
 editForm.addEventListener('submit', editFormSubmitHandler);
 addForm.addEventListener('submit', addFormSubmitHandler);
