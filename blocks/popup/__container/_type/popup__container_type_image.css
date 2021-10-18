@@ -1,9 +1,9 @@
 .popup__container_type_image {
   width: auto;
-  height: calc(100vh - 158px);
+  min-height: auto;
   margin: 0 auto;
   font-size: 0;
   background-color: rgba(0, 0, 0, 0);
   border-radius: 0;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  }
+}

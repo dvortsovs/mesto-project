@@ -1,5 +1,5 @@
 const container = document.querySelector('.page');
-const elementsList = container.querySelector('.elements__list')
+const elementsList = container.querySelector('.elements__list');
 const editButton = container.querySelector('.profile__edit-button');
 const saveButton = container.querySelector('.popup__save-button');
 const addButton = container.querySelector('.profile__add-button');
@@ -32,7 +32,7 @@ function addCard(title, src) {
     showHidePopup(imagePopup);
   });
   cardElement.querySelector('.content-card__like-button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('content-card__like-button_active')
+    evt.target.classList.toggle('content-card__like-button_active');
 });
   cardElement.querySelector('.content-card__delete-button').addEventListener('click', function (evt) {
     evt.target.parentElement.remove();
