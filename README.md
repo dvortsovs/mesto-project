@@ -8,5 +8,6 @@
 
 + HTML5
 + CSS3
++ JavaScript
 
 [Ссылка на GitHub Pages](https://dvortsovs.github.io/mesto-project/)
