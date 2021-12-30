@@ -1,7 +1,6 @@
 const container = document.querySelector('.page');
 const elementsList = container.querySelector('.elements__list');
 const editButton = container.querySelector('.profile__edit-button');
-const saveButton = container.querySelector('.popup__save-button');
 const addButton = container.querySelector('.profile__add-button');
 const editPopup = container.querySelector('.popup_type_edit');
 const addPopup = container.querySelector('.popup_type_add');
@@ -33,7 +32,7 @@ function addCard(title, src) {
   });
   cardElement.querySelector('.content-card__like-button').addEventListener('click', function (evt) {
     evt.target.classList.toggle('content-card__like-button_active');
-});
+  });
   cardElement.querySelector('.content-card__delete-button').addEventListener('click', () => cardElement.remove());
   return cardElement;
 }
@@ -61,8 +60,7 @@ function addFormSubmitHandler(evt) {
   evt.preventDefault();
   renderCard(addCard(inputTitle.value, inputLink.value));
   hidePopup(addPopup);
-  inputTitle.value = '';
-  inputLink.value = '';
+  evt.target.reset();
 }
 
 function showInputError(formElement, inputElement, errorMessage) {
@@ -94,7 +92,7 @@ function hasInvalidInput(inputList) {
 }
 
 function toggleButtonState(inputList, buttonElement) {
-  if(hasInvalidInput(inputList)) {
+  if (hasInvalidInput(inputList)) {
     buttonElement.classList.add('popup__save-button_disabled');
     buttonElement.setAttribute('disabled', true);
   } else {
@@ -128,7 +126,17 @@ function enableValidation(popup) {
   });
 }
 
+function overlayClose(evt) {
+  if (evt.target === evt.currentTarget) {
+    hidePopup(evt.currentTarget);
+  }
+}
 
+function escClose(evt) {
+  if (evt.key === 'Escape') {
+    hidePopup(container.querySelector('.popup_opened'));
+  }
+}
 
 initialCards.reverse().forEach(item => renderCard(addCard(item.name, item.link)));
 
@@ -138,10 +146,17 @@ editButton.addEventListener('click', function () {
   showPopup(editPopup);
   enableValidation(editPopup);
 });
-addButton.addEventListener('click', () => {
+
+addButton.addEventListener('click', function () {
   showPopup(addPopup);
   enableValidation(addPopup);
 });
+
+editPopup.addEventListener('click', overlayClose);
+addPopup.addEventListener('click', overlayClose);
+imagePopup.addEventListener('click', overlayClose);
+
+document.addEventListener('keydown', escClose);
 
 closeEditPopup.addEventListener('click', () => hidePopup(editPopup));
 closeAddPopup.addEventListener('click', () => hidePopup(addPopup));
