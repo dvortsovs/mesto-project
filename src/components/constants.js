@@ -35,4 +35,4 @@ const validateConfig = {
   errorClass: 'popup__input-error_active'
 };
 
-export { initialCards, validateConfig};
+export {initialCards, validateConfig};
