@@ -48,7 +48,6 @@ addPopup.addEventListener('mousedown', overlayClose);
 imagePopup.addEventListener('mousedown', overlayClose);
 
 
-
 closeEditPopup.addEventListener('click', () => hidePopup(editPopup));
 closeAddPopup.addEventListener('click', () => hidePopup(addPopup));
 closeImagePopup.addEventListener('click', () => hidePopup(imagePopup));
