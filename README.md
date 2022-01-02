@@ -9,6 +9,7 @@
 + HTML5
 + CSS3
 + JavaScript
++ Babel
 + Webpack
 + PostCSS
 
