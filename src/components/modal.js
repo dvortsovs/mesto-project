@@ -1,3 +1,4 @@
+const popups = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
 const addPopup = document.querySelector('.popup_type_add');
 const addForm = addPopup.querySelector('.popup__form');
@@ -8,41 +9,32 @@ const inputName = editForm.querySelector('.popup__input_type_name');
 const inputCaption = editForm.querySelector('.popup__input_type_caption');
 const profileName = document.querySelector('.profile__name');
 const profileCaption = document.querySelector('.profile__caption');
-const closeEditPopup = editPopup.querySelector('.popup__close-button');
-const closeAddPopup = addPopup.querySelector('.popup__close-button');
-const imagePopup = document.querySelector('.popup_type_image');
-const closeImagePopup = imagePopup.querySelector('.popup__close-button');
 
 function showPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEsc);
 }
 
 function hidePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('keydown', escClose);
+  document.removeEventListener('keydown', closeByEsc);
 }
 
-function editFormSubmitHandler(evt) {
+function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileCaption.textContent = inputCaption.value;
   hidePopup(editPopup);
 }
 
-function addFormSubmitHandler(evt, renderCard, addCard) {
+function handleAddFormSubmit(evt, renderCard, addCard, showPopup) {
   evt.preventDefault();
-  renderCard(addCard(inputTitle.value, inputLink.value));
+  renderCard(addCard(inputTitle.value, inputLink.value, showPopup));
   hidePopup(addPopup);
   evt.target.reset();
 }
 
-function overlayClose(evt) {
-  if (evt.target === evt.currentTarget) {
-    hidePopup(evt.currentTarget);
-  }
-}
-
-function escClose(evt) {
+function closeByEsc(evt) {
   if (evt.key === 'Escape') {
     hidePopup(document.querySelector('.popup_opened'));
   }
@@ -51,13 +43,10 @@ function escClose(evt) {
 export {
   showPopup,
   hidePopup,
-  editFormSubmitHandler,
-  addFormSubmitHandler,
-  escClose,
-  overlayClose,
-  closeImagePopup,
-  closeEditPopup,
-  closeAddPopup,
+  handleEditFormSubmit,
+  handleAddFormSubmit,
+  closeByEsc,
+  popups,
   addPopup,
   editPopup,
   addForm,
