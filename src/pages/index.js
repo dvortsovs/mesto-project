@@ -1,17 +1,13 @@
 import './index.css';
-import {enableValidation} from "../components/validate";
+import {enableValidation, toggleButtonState} from "../components/validate";
 import {initialCards, validateConfig} from "../components/constants";
-import {renderCard, addCard, imagePopup} from "../components/card";
+import {renderCard, addCard} from "../components/card";
 import {
   showPopup,
   hidePopup,
-  editFormSubmitHandler,
-  addFormSubmitHandler,
-  escClose,
-  overlayClose,
-  closeAddPopup,
-  closeImagePopup,
-  closeEditPopup,
+  handleEditFormSubmit,
+  handleAddFormSubmit,
+  popups,
   addPopup,
   editPopup,
   addForm,
@@ -26,30 +22,34 @@ const container = document.querySelector('.page');
 const editButton = container.querySelector('.profile__edit-button');
 const addButton = container.querySelector('.profile__add-button');
 
-
-initialCards.reverse().forEach(item => renderCard(addCard(item.name, item.link, showPopup, escClose)));
+initialCards.reverse().forEach(item => renderCard(addCard(item.name, item.link, showPopup)));
 
 enableValidation(validateConfig);
+
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      hidePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__close-button')) {
+      hidePopup(popup);
+    }
+  });
+});
 
 editButton.addEventListener('click', function () {
   inputName.value = profileName.textContent;
   inputCaption.value = profileCaption.textContent;
   showPopup(editPopup);
-  document.addEventListener('keydown', escClose);
 });
 
 addButton.addEventListener('click', function () {
+  const form = document.forms.add;
+  const inputList = Array.from(form.querySelectorAll(validateConfig.inputSelector));
+  const buttonElement = form.querySelector(validateConfig.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, validateConfig);
   showPopup(addPopup);
-  document.addEventListener('keydown', escClose);
 });
 
-editPopup.addEventListener('mousedown', overlayClose);
-addPopup.addEventListener('mousedown', overlayClose);
-imagePopup.addEventListener('mousedown', overlayClose);
-
-
-closeEditPopup.addEventListener('click', () => hidePopup(editPopup));
-closeAddPopup.addEventListener('click', () => hidePopup(addPopup));
-closeImagePopup.addEventListener('click', () => hidePopup(imagePopup));
-editForm.addEventListener('submit', editFormSubmitHandler);
-addForm.addEventListener('submit', (evt) => addFormSubmitHandler(evt, renderCard, addCard));
+editForm.addEventListener('submit', handleEditFormSubmit);
+addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt, renderCard, addCard, showPopup));
