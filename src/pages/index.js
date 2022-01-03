@@ -21,6 +21,9 @@ import {
 const container = document.querySelector('.page');
 const editButton = container.querySelector('.profile__edit-button');
 const addButton = container.querySelector('.profile__add-button');
+const form = document.forms.add;
+const inputList = Array.from(form.querySelectorAll(validateConfig.inputSelector));
+const buttonElement = form.querySelector(validateConfig.submitButtonSelector);
 
 initialCards.reverse().forEach(item => renderCard(addCard(item.name, item.link, showPopup)));
 
@@ -44,9 +47,6 @@ editButton.addEventListener('click', function () {
 });
 
 addButton.addEventListener('click', function () {
-  const form = document.forms.add;
-  const inputList = Array.from(form.querySelectorAll(validateConfig.inputSelector));
-  const buttonElement = form.querySelector(validateConfig.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, validateConfig);
   showPopup(addPopup);
 });
