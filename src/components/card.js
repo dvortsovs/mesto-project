@@ -3,19 +3,6 @@ const imagePopup = document.querySelector('.popup_type_image');
 const srcPopupImage = imagePopup.querySelector('.popup__image');
 const titlePopupImage = imagePopup.querySelector('.popup__title');
 
-function defineAltValue(src) {
-  let result = '';
-  const arr = src.split('').reverse();
-  for (let i = 0; i < src.length; i++) {
-    if (arr[i] === '/') {
-      break
-    } else {
-      result += arr[i];
-    }
-  }
-  return result.split('').reverse().join('')
-}
-
 function addCard(title, src, showPopup) {
   const cardTemplate = document.querySelector('#content-card').content;
   const cardElement = cardTemplate.querySelector('.content-card').cloneNode(true);
@@ -23,9 +10,10 @@ function addCard(title, src, showPopup) {
 
   cardElement.querySelector('.content-card__title').textContent = title;
   cardImage.src = src;
-  cardImage.alt = defineAltValue(src)
+  cardImage.alt = title;
   cardImage.addEventListener('click', function () {
     srcPopupImage.src = src;
+    srcPopupImage.alt = title;
     titlePopupImage.textContent = title;
     showPopup(imagePopup);
   });
