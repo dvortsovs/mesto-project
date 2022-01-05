@@ -1,7 +1,6 @@
 import './index.css';
 import {enableValidation, toggleButtonState} from "../components/validate.js";
 import {validateConfig, config} from "../components/constants.js";
-import {renderCard, addCard} from "../components/card.js";
 import {getProfileInfo, getCards} from "../components/utils.js";
 import {
   showPopup,
@@ -29,7 +28,6 @@ const buttonElement = form.querySelector(validateConfig.submitButtonSelector);
 getProfileInfo(config, config.urls.userInfo, profileName, profileCaption);
 getCards(config, config.urls.cards)
 
-
 enableValidation(validateConfig);
 
 popups.forEach((popup) => {
@@ -55,4 +53,4 @@ addButton.addEventListener('click', function () {
 });
 
 editForm.addEventListener('submit',(evt) => handleEditFormSubmit(evt, config, config.urls.userInfo));
-addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt, renderCard, addCard, showPopup));
+addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt, config, config.urls.cards));

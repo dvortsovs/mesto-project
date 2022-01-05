@@ -1,4 +1,4 @@
-import {queryGetRequests, queryPatchRequests} from "./api.js";
+import {queryGetRequests, queryPatchRequests, queryPostRequests} from "./api.js";
 import {addCard, renderCard} from "./card.js";
 
 const avatarElement = document.querySelector('.avatar')
@@ -18,7 +18,7 @@ function getProfileInfo(config, url, profileName, profileCaption) {
 function getCards(config, url) {
   queryGetRequests(config, url)
     .then((res) => {
-      res.forEach((card) => {
+      res.reverse().forEach((card) => {
         renderCard(addCard(card.name, card.link))
       })
     })
@@ -33,8 +33,16 @@ function setProfileInfo(config, url, body, name, caption) {
     .catch((err) => console.log(`Ошибка ${err}`));
 }
 
+function postNewCard(config, url, body) {
+  queryPostRequests(config, url, body)
+    .then((res) => {
+      renderCard(addCard(res.name, res.link));
+    })
+    .catch((err) => console.log(err))
+}
+
 function getAvatar(avatar, avatarElement) {
   avatarElement.style.backgroundImage = `url(${avatar})`
 }
 
-export {getProfileInfo, getCards, setProfileInfo}
+export {getProfileInfo, getCards, setProfileInfo, postNewCard}

@@ -1,4 +1,4 @@
-import {setProfileInfo} from "./utils.js";
+import {setProfileInfo, postNewCard} from "./utils.js";
 
 const popups = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
@@ -32,9 +32,13 @@ function handleEditFormSubmit(evt, config, url) {
   hidePopup(editPopup);
 }
 
-function handleAddFormSubmit(evt, renderCard, addCard, showPopup) {
+function handleAddFormSubmit(evt, config, url) {
   evt.preventDefault();
-  renderCard(addCard(inputTitle.value, inputLink.value, showPopup));
+  const forms = {
+    name: inputTitle.value,
+    link: inputLink.value
+  }
+  postNewCard(config, url, forms)
   hidePopup(addPopup);
   evt.target.reset();
 }
