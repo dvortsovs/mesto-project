@@ -1,5 +1,6 @@
 
 const config = {
+  userId: '',
   urls: {
     baseUrl: 'https://nomoreparties.co/v1/plus-cohort-5',
     cards: '/cards',

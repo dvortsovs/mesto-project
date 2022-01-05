@@ -6,6 +6,7 @@ const avatarElement = document.querySelector('.avatar')
 function getProfileInfo(config, url, profileName, profileCaption) {
   queryGetRequests(config, url)
     .then((res) => {
+      config.userId = res._id;
       profileName.textContent = res.name;
       profileCaption.textContent = res.about;
       getAvatar(res.avatar, avatarElement);
@@ -18,8 +19,8 @@ function getProfileInfo(config, url, profileName, profileCaption) {
 function getCards(config, url) {
   queryGetRequests(config, url)
     .then((res) => {
-      res.reverse().forEach((card) => {
-        renderCard(addCard(card.name, card.link, card.likes.length))
+      res.forEach((card) => {
+        renderCard(addCard(card.name, card.link, card.likes.length, card.owner._id, config.userId))
       })
     })
 }
