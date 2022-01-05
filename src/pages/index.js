@@ -54,5 +54,5 @@ addButton.addEventListener('click', function () {
   showPopup(addPopup);
 });
 
-editForm.addEventListener('submit', handleEditFormSubmit);
+editForm.addEventListener('submit',(evt) => handleEditFormSubmit(evt, config, config.urls.userInfo));
 addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt, renderCard, addCard, showPopup));

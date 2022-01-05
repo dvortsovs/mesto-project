@@ -1,4 +1,4 @@
-import {queryGetRequests} from "./api.js";
+import {queryGetRequests, queryPatchRequests} from "./api.js";
 import {addCard, renderCard} from "./card.js";
 
 const avatarElement = document.querySelector('.avatar')
@@ -12,7 +12,7 @@ function getProfileInfo(config, url, profileName, profileCaption) {
     })
     .catch((err) => {
       console.log(`Error: ${err}`)
-    })
+    });
 }
 
 function getCards(config, url) {
@@ -24,8 +24,17 @@ function getCards(config, url) {
     })
 }
 
+function setProfileInfo(config, url, body, name, caption) {
+  queryPatchRequests(config, url, body)
+    .then((res) => {
+      name.textContent = res.name;
+      caption.textContent = res.about;
+    })
+    .catch((err) => console.log(`Ошибка ${err}`));
+}
+
 function getAvatar(avatar, avatarElement) {
   avatarElement.style.backgroundImage = `url(${avatar})`
 }
 
-export {getProfileInfo, getCards}
+export {getProfileInfo, getCards, setProfileInfo}

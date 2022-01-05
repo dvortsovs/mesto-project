@@ -1,3 +1,5 @@
+import {setProfileInfo} from "./utils.js";
+
 const popups = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
 const addPopup = document.querySelector('.popup_type_add');
@@ -20,10 +22,13 @@ function hidePopup(popup) {
   document.removeEventListener('keydown', closeByEsc);
 }
 
-function handleEditFormSubmit(evt) {
+function handleEditFormSubmit(evt, config, url) {
   evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileCaption.textContent = inputCaption.value;
+  const forms = {
+    name: inputName.value,
+    about: inputCaption.value
+  }
+  setProfileInfo(config, url, forms, profileName, profileCaption)
   hidePopup(editPopup);
 }
 
