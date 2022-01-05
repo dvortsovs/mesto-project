@@ -1,11 +1,11 @@
-import {showPopup} from "./modal.js";
+import {showPopup, handleConfirmPopup} from "./modal.js";
 
 const elementsList = document.querySelector('.elements__list');
 const imagePopup = document.querySelector('.popup_type_image');
 const srcPopupImage = imagePopup.querySelector('.popup__image');
 const titlePopupImage = imagePopup.querySelector('.popup__title');
 
-function addCard(title, src, counter, cardCreator, userId) {
+function addCard(title, src, counter, cardCreator, userId, cardId) {
   const cardTemplate = document.querySelector('#content-card').content;
   const cardElement = cardTemplate.querySelector('.content-card').cloneNode(true);
   const cardImage = cardElement.querySelector('.content-card__image');
@@ -27,13 +27,13 @@ function addCard(title, src, counter, cardCreator, userId) {
   if (!(cardCreator === userId)) {
     deleteBtn.remove()
   } else {
-    deleteBtn.addEventListener('click', () => cardElement.remove());
+    deleteBtn.addEventListener('click',() => handleConfirmPopup(cardId, cardElement));
   }
   return cardElement;
 }
 
 function renderCard(card) {
-  elementsList.append(card);
+  elementsList.prepend(card);
 }
 
 export {renderCard, addCard, imagePopup}
