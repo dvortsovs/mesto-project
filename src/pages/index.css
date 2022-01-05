@@ -52,6 +52,8 @@
 
 /*avatar*/
 @import url('../blocks/avatar/avatar.css');
+@import url('../blocks/avatar/__edit/avatar__edit.css');
+
 
 /*elements*/
 @import url('../blocks/elements/__list/elements__list.css');
