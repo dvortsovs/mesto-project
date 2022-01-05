@@ -1,0 +1,6 @@
+.popup__container_type_confirm {
+  min-height: initial;
+  height: 181px;
+  display: flex;
+  flex-direction: column;
+}
