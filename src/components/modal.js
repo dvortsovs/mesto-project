@@ -1,8 +1,10 @@
-import {setProfileInfo, postNewCard} from "./utils.js";
+import {setProfileInfo, postNewCard, deleteCard} from "./utils.js";
+import {config} from "./constants.js";
 
 const popups = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
 const addPopup = document.querySelector('.popup_type_add');
+const confirmPopup = document.querySelector('.popup_type_confirm')
 const addForm = addPopup.querySelector('.popup__form');
 const inputTitle = addForm.querySelector('.popup__input_type_title');
 const inputLink = addForm.querySelector('.popup__input_type_link');
@@ -11,6 +13,7 @@ const inputName = editForm.querySelector('.popup__input_type_name');
 const inputCaption = editForm.querySelector('.popup__input_type_caption');
 const profileName = document.querySelector('.profile__name');
 const profileCaption = document.querySelector('.profile__caption');
+const confirmButton = confirmPopup.querySelector('.popup__save-button_type_confirm');
 
 function showPopup(popup) {
   popup.classList.add('popup_opened');
@@ -30,6 +33,11 @@ function handleEditFormSubmit(evt, config, url) {
   }
   setProfileInfo(config, url, forms, profileName, profileCaption)
   hidePopup(editPopup);
+}
+
+function handleConfirmPopup(cardId, cardElement) {
+  showPopup(confirmPopup);
+  confirmButton.addEventListener('click', () => deleteCard(config, config.urls.cards, cardId, confirmPopup, cardElement));
 }
 
 function handleAddFormSubmit(evt, config, url) {
@@ -54,6 +62,7 @@ export {
   hidePopup,
   handleEditFormSubmit,
   handleAddFormSubmit,
+  handleConfirmPopup,
   closeByEsc,
   popups,
   addPopup,

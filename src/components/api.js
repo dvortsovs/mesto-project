@@ -40,4 +40,17 @@ function queryPostRequests(config, url, body) {
     })
 }
 
-export {queryGetRequests, queryPatchRequests, queryPostRequests}
+function queryDeleteRequests(config, url, cardId) {
+  return fetch(`${config.urls.baseUrl}${url}/${cardId}`, {
+    method: 'DELETE',
+    headers: config.headers.headers,
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      Promise.reject(res.status);
+    })
+}
+
+export {queryGetRequests, queryPatchRequests, queryPostRequests, queryDeleteRequests}

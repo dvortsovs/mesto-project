@@ -1,5 +1,6 @@
-import {queryGetRequests, queryPatchRequests, queryPostRequests} from "./api.js";
+import {queryDeleteRequests, queryGetRequests, queryPatchRequests, queryPostRequests} from "./api.js";
 import {addCard, renderCard} from "./card.js";
+import {hidePopup} from "./modal.js";
 
 const avatarElement = document.querySelector('.avatar')
 
@@ -19,8 +20,8 @@ function getProfileInfo(config, url, profileName, profileCaption) {
 function getCards(config, url) {
   queryGetRequests(config, url)
     .then((res) => {
-      res.forEach((card) => {
-        renderCard(addCard(card.name, card.link, card.likes.length, card.owner._id, config.userId))
+      res.reverse().forEach((card) => {
+        renderCard(addCard(card.name, card.link, card.likes.length, card.owner._id, config.userId, card._id))
       })
     })
 }
@@ -46,4 +47,12 @@ function getAvatar(avatar, avatarElement) {
   avatarElement.style.backgroundImage = `url(${avatar})`
 }
 
-export {getProfileInfo, getCards, setProfileInfo, postNewCard}
+function deleteCard(config, url, cardId, popup, cardElement) {
+  queryDeleteRequests(config, url, cardId)
+    .then(() => {
+      hidePopup(popup);
+      cardElement.remove();
+    })
+}
+
+export {getProfileInfo, getCards, setProfileInfo, postNewCard, deleteCard}

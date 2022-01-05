@@ -1,0 +1,4 @@
+.popup__save-button_type_confirm {
+  width: calc(100% - 72px);
+  margin: 38px auto 0;
+}
