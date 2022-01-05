@@ -25,6 +25,20 @@ const initialCards = [
   }
 ];
 
+const config = {
+  urls: {
+    baseUrl: 'https://nomoreparties.co/v1/plus-cohort-5',
+    cards: '/cards',
+    userInfo: '/users/me'
+  },
+  headers: {headers:
+      {
+    authorization: '0ebadb24-8922-4810-85ba-1c7bc357561a',
+    'Content-Type': 'application/json'
+      }
+  }
+}
+
 const validateConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -35,4 +49,4 @@ const validateConfig = {
   errorClass: 'popup__input-error_active'
 };
 
-export {initialCards, validateConfig};
+export {initialCards, validateConfig, config};
