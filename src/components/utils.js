@@ -19,7 +19,7 @@ function getCards(config, url) {
   queryGetRequests(config, url)
     .then((res) => {
       res.reverse().forEach((card) => {
-        renderCard(addCard(card.name, card.link))
+        renderCard(addCard(card.name, card.link, card.likes.length))
       })
     })
 }
