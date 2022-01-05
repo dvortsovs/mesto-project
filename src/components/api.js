@@ -43,7 +43,7 @@ function queryPostRequests(config, url, body) {
 function queryDeleteRequests(config, url, cardId) {
   return fetch(`${config.urls.baseUrl}${url}/${cardId}`, {
     method: 'DELETE',
-    headers: config.headers.headers,
+    headers: config.headers.headers
   })
     .then((res) => {
       if (res.ok) {
@@ -53,4 +53,17 @@ function queryDeleteRequests(config, url, cardId) {
     })
 }
 
-export {queryGetRequests, queryPatchRequests, queryPostRequests, queryDeleteRequests}
+function queryPutRequests(config, url, cardId) {
+  return fetch(`${config.urls.baseUrl}${url}/${cardId}`, {
+    method: 'PUT',
+    headers: config.headers.headers
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      Promise.reject(res.status);
+    })
+}
+
+export {queryGetRequests, queryPatchRequests, queryPostRequests, queryDeleteRequests, queryPutRequests}

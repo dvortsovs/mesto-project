@@ -21,7 +21,7 @@ function getCards(config, url) {
   queryGetRequests(config, url)
     .then((res) => {
       res.reverse().forEach((card) => {
-        renderCard(addCard(card.name, card.link, card.likes.length, card.owner._id, config.userId, card._id))
+        renderCard(addCard(card, config))
       })
     })
 }
@@ -38,13 +38,9 @@ function setProfileInfo(config, url, body, name, caption) {
 function postNewCard(config, url, body) {
   queryPostRequests(config, url, body)
     .then((res) => {
-      renderCard(addCard(res.name, res.link));
+      renderCard(addCard(res, config));
     })
     .catch((err) => console.log(err))
-}
-
-function getAvatar(avatar, avatarElement) {
-  avatarElement.style.backgroundImage = `url(${avatar})`
 }
 
 function deleteCard(config, url, cardId, popup, cardElement) {
@@ -53,6 +49,10 @@ function deleteCard(config, url, cardId, popup, cardElement) {
       hidePopup(popup);
       cardElement.remove();
     })
+}
+
+function getAvatar(avatar, avatarElement) {
+  avatarElement.style.backgroundImage = `url(${avatar})`
 }
 
 export {getProfileInfo, getCards, setProfileInfo, postNewCard, deleteCard}
