@@ -1,9 +1,11 @@
+import {showPopup} from "./modal.js";
+
 const elementsList = document.querySelector('.elements__list');
 const imagePopup = document.querySelector('.popup_type_image');
 const srcPopupImage = imagePopup.querySelector('.popup__image');
 const titlePopupImage = imagePopup.querySelector('.popup__title');
 
-function addCard(title, src, showPopup) {
+function addCard(title, src) {
   const cardTemplate = document.querySelector('#content-card').content;
   const cardElement = cardTemplate.querySelector('.content-card').cloneNode(true);
   const cardImage = cardElement.querySelector('.content-card__image');

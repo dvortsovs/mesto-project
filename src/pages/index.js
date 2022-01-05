@@ -1,8 +1,8 @@
 import './index.css';
 import {enableValidation, toggleButtonState} from "../components/validate.js";
-import {initialCards, validateConfig,config} from "../components/constants.js";
+import {validateConfig, config} from "../components/constants.js";
 import {renderCard, addCard} from "../components/card.js";
-import {getProfileInfo} from "../components/utils.js";
+import {getProfileInfo, getCards} from "../components/utils.js";
 import {
   showPopup,
   hidePopup,
@@ -27,8 +27,8 @@ const inputList = Array.from(form.querySelectorAll(validateConfig.inputSelector)
 const buttonElement = form.querySelector(validateConfig.submitButtonSelector);
 
 getProfileInfo(config, config.urls.userInfo, profileName, profileCaption);
+getCards(config, config.urls.cards)
 
-initialCards.reverse().forEach(item => renderCard(addCard(item.name, item.link, showPopup)));
 
 enableValidation(validateConfig);
 
