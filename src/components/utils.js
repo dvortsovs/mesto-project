@@ -13,7 +13,10 @@ function getProfileInfo(config, url, profileName, profileCaption) {
       getAvatar(res.avatar, avatarElement);
     })
     .catch((err) => {
-      console.log(`Error: ${err}`)
+      console.log(`Error: ${err}`);
+    })
+    .finally(() => {
+      getCards(config, config.urls.cards);
     });
 }
 
@@ -21,8 +24,11 @@ function getCards(config, url) {
   queryGetRequests(config, url)
     .then((res) => {
       res.reverse().forEach((card) => {
-        renderCard(addCard(card, config))
+        renderCard(addCard(card, config));
       })
+    })
+    .catch((err) => {
+      console.log(`Error: ${err}`);
     })
 }
 
@@ -32,7 +38,9 @@ function setProfileInfo(config, url, body, name, caption, popup, btn, originalTe
       name.textContent = res.name;
       caption.textContent = res.about;
     })
-    .catch((err) => console.log(`Ошибка ${err}`))
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+    })
     .finally(() => {
       showLoading(false, btn, originalText);
       hidePopup(popup);
@@ -44,10 +52,12 @@ function postNewCard(config, url, body, popup, btn, originalText) {
     .then((res) => {
       renderCard(addCard(res, config));
     })
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+    })
     .finally(() => {
       showLoading(false, btn, originalText);
-      hidePopup(popup)
+      hidePopup(popup);
       popup.querySelector('.popup__form').reset();
     });
 }
@@ -58,6 +68,9 @@ function deleteCard(config, url, cardId, popup, cardElement) {
       hidePopup(popup);
       cardElement.remove();
     })
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+    });
 }
 
 function setAvatar(config, url, body, popup, btn, originalText) {
@@ -65,15 +78,18 @@ function setAvatar(config, url, body, popup, btn, originalText) {
     .then((res) => {
       getAvatar(res.avatar, avatarElement);
     })
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+    })
     .finally(() => {
       showLoading(false, btn, originalText);
       hidePopup(popup);
       popup.querySelector('.popup__form').reset();
-    })
+    });
 }
 
 function getAvatar(avatar, avatarElement) {
-  avatarElement.style.backgroundImage = `url(${avatar})`
+  avatarElement.style.backgroundImage = `url(${avatar})`;
 }
 
 function showLoading(isLoading, button, btnText) {

@@ -1,7 +1,7 @@
 import './index.css';
 import {enableValidation, toggleButtonState} from "../components/validate.js";
 import {validateConfig, config} from "../components/constants.js";
-import {getProfileInfo, getCards} from "../components/utils.js";
+import {getProfileInfo} from "../components/utils.js";
 import {
   showPopup,
   hidePopup,
@@ -30,7 +30,6 @@ const inputList = Array.from(form.querySelectorAll(validateConfig.inputSelector)
 const buttonElement = form.querySelector(validateConfig.submitButtonSelector);
 
 getProfileInfo(config, config.urls.userInfo, profileName, profileCaption);
-getCards(config, config.urls.cards)
 
 enableValidation(validateConfig);
 

@@ -38,13 +38,16 @@ function handleEditFormSubmit(evt, config, url) {
   const forms = {
     name: inputName.value,
     about: inputCaption.value
-  }
-  setProfileInfo(config, url, forms, profileName, profileCaption, editPopup, editSaveBtn, originalText)
+  };
+  setProfileInfo(config, url, forms, profileName, profileCaption, editPopup, editSaveBtn, originalText);
 }
 
 function handleConfirmPopup(cardId, cardElement) {
   showPopup(confirmPopup);
-  confirmButton.addEventListener('click', () => deleteCard(config, config.urls.cards, cardId, confirmPopup, cardElement));
+  confirmButton.addEventListener('click', () => deleteCard(
+    config, config.urls.cards, cardId, confirmPopup, cardElement
+    )
+  );
 }
 
 function handleAddFormSubmit(evt, config, url) {
@@ -54,7 +57,7 @@ function handleAddFormSubmit(evt, config, url) {
   const forms = {
     name: inputTitle.value,
     link: inputLink.value
-  }
+  };
   postNewCard(config, url, forms, addPopup, addSaveBtn, originalText);
 }
 
