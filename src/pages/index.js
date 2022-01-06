@@ -7,11 +7,14 @@ import {
   hidePopup,
   handleEditFormSubmit,
   handleAddFormSubmit,
+  handleAvatarFormSubmit,
   popups,
   addPopup,
   editPopup,
+  avatarPopup,
   addForm,
   editForm,
+  avatarForm,
   inputName,
   inputCaption,
   profileCaption,
@@ -21,6 +24,7 @@ import {
 const container = document.querySelector('.page');
 const editButton = container.querySelector('.profile__edit-button');
 const addButton = container.querySelector('.profile__add-button');
+const avatarButton = container.querySelector('.avatar__edit');
 const form = document.forms.add;
 const inputList = Array.from(form.querySelectorAll(validateConfig.inputSelector));
 const buttonElement = form.querySelector(validateConfig.submitButtonSelector);
@@ -52,5 +56,11 @@ addButton.addEventListener('click', function () {
   showPopup(addPopup);
 });
 
+avatarButton.addEventListener('click', function () {
+  toggleButtonState(inputList, buttonElement, validateConfig);
+  showPopup(avatarPopup);
+});
+
 editForm.addEventListener('submit',(evt) => handleEditFormSubmit(evt, config, config.urls.userInfo));
 addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt, config, config.urls.cards));
+avatarForm.addEventListener('submit', (evt) => handleAvatarFormSubmit(evt, config, config.urls.avatar));

@@ -51,8 +51,15 @@ function deleteCard(config, url, cardId, popup, cardElement) {
     })
 }
 
+function setAvatar(config, url, body) {
+  queryPatchRequests(config, url, body)
+    .then((res) => {
+      getAvatar(res.avatar, avatarElement);
+    })
+}
+
 function getAvatar(avatar, avatarElement) {
   avatarElement.style.backgroundImage = `url(${avatar})`
 }
 
-export {getProfileInfo, getCards, setProfileInfo, postNewCard, deleteCard}
+export {getProfileInfo, getCards, setProfileInfo, postNewCard, deleteCard, setAvatar}

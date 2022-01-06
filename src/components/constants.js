@@ -5,7 +5,8 @@ const config = {
     baseUrl: 'https://nomoreparties.co/v1/plus-cohort-5',
     cards: '/cards',
     likes: '/cards/likes',
-    userInfo: '/users/me'
+    userInfo: '/users/me',
+    avatar: '/users/me/avatar'
   },
   headers: {headers:
       {

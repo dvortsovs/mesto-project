@@ -1,14 +1,17 @@
-import {setProfileInfo, postNewCard, deleteCard} from "./utils.js";
+import {setProfileInfo, postNewCard, deleteCard, setAvatar} from "./utils.js";
 import {config} from "./constants.js";
 
 const popups = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
 const addPopup = document.querySelector('.popup_type_add');
-const confirmPopup = document.querySelector('.popup_type_confirm')
+const confirmPopup = document.querySelector('.popup_type_confirm');
+const avatarPopup = document.querySelector('.popup_type_avatar');
 const addForm = addPopup.querySelector('.popup__form');
 const inputTitle = addForm.querySelector('.popup__input_type_title');
 const inputLink = addForm.querySelector('.popup__input_type_link');
 const editForm = editPopup.querySelector('.popup__form');
+const avatarForm = avatarPopup.querySelector('.popup__form');
+const avatarInput = avatarForm.querySelector('.popup__input_type_avatar');
 const inputName = editForm.querySelector('.popup__input_type_name');
 const inputCaption = editForm.querySelector('.popup__input_type_caption');
 const profileName = document.querySelector('.profile__name');
@@ -51,6 +54,16 @@ function handleAddFormSubmit(evt, config, url) {
   evt.target.reset();
 }
 
+function handleAvatarFormSubmit(evt, config, url) {
+  evt.preventDefault();
+  const form = {
+    avatar: avatarInput.value
+  };
+  setAvatar(config, url, form);
+  hidePopup(avatarPopup);
+  evt.target.reset();
+}
+
 function closeByEsc(evt) {
   if (evt.key === 'Escape') {
     hidePopup(document.querySelector('.popup_opened'));
@@ -62,13 +75,16 @@ export {
   hidePopup,
   handleEditFormSubmit,
   handleAddFormSubmit,
+  handleAvatarFormSubmit,
   handleConfirmPopup,
   closeByEsc,
   popups,
   addPopup,
   editPopup,
+  avatarPopup,
   addForm,
   editForm,
+  avatarForm,
   inputCaption,
   inputName,
   profileName,
