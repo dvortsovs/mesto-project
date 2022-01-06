@@ -12,3 +12,5 @@
 + Babel
 + Webpack
 + PostCSS
+
+[Ссылка на GitHub Pages](https://dvortsovs.github.io/mesto-project/)

@@ -1,14 +1,25 @@
+import {setProfileInfo, postNewCard, deleteCard, setAvatar, showLoading} from "./utils.js";
+import {config} from "./constants.js";
+
 const popups = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
 const addPopup = document.querySelector('.popup_type_add');
+const confirmPopup = document.querySelector('.popup_type_confirm');
+const avatarPopup = document.querySelector('.popup_type_avatar');
 const addForm = addPopup.querySelector('.popup__form');
 const inputTitle = addForm.querySelector('.popup__input_type_title');
 const inputLink = addForm.querySelector('.popup__input_type_link');
 const editForm = editPopup.querySelector('.popup__form');
+const avatarForm = avatarPopup.querySelector('.popup__form');
+const avatarInput = avatarForm.querySelector('.popup__input_type_avatar');
 const inputName = editForm.querySelector('.popup__input_type_name');
 const inputCaption = editForm.querySelector('.popup__input_type_caption');
 const profileName = document.querySelector('.profile__name');
 const profileCaption = document.querySelector('.profile__caption');
+const confirmButton = confirmPopup.querySelector('.popup__save-button_type_confirm');
+const editSaveBtn = editPopup.querySelector('.popup__save-button');
+const addSaveBtn = addPopup.querySelector('.popup__save-button');
+const avatarSaveBtn = avatarPopup.querySelector('.popup__save-button');
 
 function showPopup(popup) {
   popup.classList.add('popup_opened');
@@ -20,18 +31,44 @@ function hidePopup(popup) {
   document.removeEventListener('keydown', closeByEsc);
 }
 
-function handleEditFormSubmit(evt) {
+function handleEditFormSubmit(evt, config, url) {
   evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileCaption.textContent = inputCaption.value;
-  hidePopup(editPopup);
+  const originalText = editSaveBtn.textContent;
+  showLoading(true, editSaveBtn, '');
+  const forms = {
+    name: inputName.value,
+    about: inputCaption.value
+  };
+  setProfileInfo(config, url, forms, profileName, profileCaption, editPopup, editSaveBtn, originalText);
 }
 
-function handleAddFormSubmit(evt, renderCard, addCard, showPopup) {
+function handleConfirmPopup(cardId, cardElement) {
+  showPopup(confirmPopup);
+  confirmButton.addEventListener('click', () => deleteCard(
+    config, config.urls.cards, cardId, confirmPopup, cardElement
+    )
+  );
+}
+
+function handleAddFormSubmit(evt, config, url) {
   evt.preventDefault();
-  renderCard(addCard(inputTitle.value, inputLink.value, showPopup));
-  hidePopup(addPopup);
-  evt.target.reset();
+  const originalText = addSaveBtn.textContent;
+  showLoading(true, addSaveBtn, '')
+  const forms = {
+    name: inputTitle.value,
+    link: inputLink.value
+  };
+  postNewCard(config, url, forms, addPopup, addSaveBtn, originalText);
+}
+
+function handleAvatarFormSubmit(evt, config, url) {
+  evt.preventDefault();
+  const originalText = avatarSaveBtn.textContent;
+  showLoading(true, avatarSaveBtn, '');
+  const form = {
+    avatar: avatarInput.value
+  };
+  setAvatar(config, url, form, avatarPopup, avatarSaveBtn, originalText);
 }
 
 function closeByEsc(evt) {
@@ -45,12 +82,16 @@ export {
   hidePopup,
   handleEditFormSubmit,
   handleAddFormSubmit,
+  handleAvatarFormSubmit,
+  handleConfirmPopup,
   closeByEsc,
   popups,
   addPopup,
   editPopup,
+  avatarPopup,
   addForm,
   editForm,
+  avatarForm,
   inputCaption,
   inputName,
   profileName,

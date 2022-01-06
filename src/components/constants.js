@@ -1,29 +1,19 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+const config = {
+  userId: '',
+  urls: {
+    baseUrl: 'https://nomoreparties.co/v1/plus-cohort-5',
+    cards: '/cards',
+    likes: '/cards/likes',
+    userInfo: '/users/me',
+    avatar: '/users/me/avatar'
   },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  headers: {headers:
+      {
+    authorization: '0ebadb24-8922-4810-85ba-1c7bc357561a',
+    'Content-Type': 'application/json'
+      }
   }
-];
+}
 
 const validateConfig = {
   formSelector: '.popup__form',
@@ -35,4 +25,4 @@ const validateConfig = {
   errorClass: 'popup__input-error_active'
 };
 
-export {initialCards, validateConfig};
+export {validateConfig, config};

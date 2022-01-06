@@ -1,31 +1,35 @@
 import './index.css';
-import {enableValidation, toggleButtonState} from "../components/validate";
-import {initialCards, validateConfig} from "../components/constants";
-import {renderCard, addCard} from "../components/card";
+import {enableValidation, toggleButtonState} from "../components/validate.js";
+import {validateConfig, config} from "../components/constants.js";
+import {getProfileInfo} from "../components/utils.js";
 import {
   showPopup,
   hidePopup,
   handleEditFormSubmit,
   handleAddFormSubmit,
+  handleAvatarFormSubmit,
   popups,
   addPopup,
   editPopup,
+  avatarPopup,
   addForm,
   editForm,
+  avatarForm,
   inputName,
   inputCaption,
   profileCaption,
   profileName
-} from "../components/modal";
+} from "../components/modal.js";
 
 const container = document.querySelector('.page');
 const editButton = container.querySelector('.profile__edit-button');
 const addButton = container.querySelector('.profile__add-button');
+const avatarButton = container.querySelector('.avatar__edit');
 const form = document.forms.add;
 const inputList = Array.from(form.querySelectorAll(validateConfig.inputSelector));
 const buttonElement = form.querySelector(validateConfig.submitButtonSelector);
 
-initialCards.reverse().forEach(item => renderCard(addCard(item.name, item.link, showPopup)));
+getProfileInfo(config, config.urls.userInfo, profileName, profileCaption);
 
 enableValidation(validateConfig);
 
@@ -51,5 +55,11 @@ addButton.addEventListener('click', function () {
   showPopup(addPopup);
 });
 
-editForm.addEventListener('submit', handleEditFormSubmit);
-addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt, renderCard, addCard, showPopup));
+avatarButton.addEventListener('click', function () {
+  toggleButtonState(inputList, buttonElement, validateConfig);
+  showPopup(avatarPopup);
+});
+
+editForm.addEventListener('submit',(evt) => handleEditFormSubmit(evt, config, config.urls.userInfo));
+addForm.addEventListener('submit', (evt) => handleAddFormSubmit(evt, config, config.urls.cards));
+avatarForm.addEventListener('submit', (evt) => handleAvatarFormSubmit(evt, config, config.urls.avatar));
