@@ -1,4 +1,4 @@
-import {setProfileInfo, postNewCard, deleteCard, setAvatar} from "./utils.js";
+import {setProfileInfo, postNewCard, deleteCard, setAvatar, showLoading} from "./utils.js";
 import {config} from "./constants.js";
 
 const popups = document.querySelectorAll('.popup');
@@ -17,6 +17,9 @@ const inputCaption = editForm.querySelector('.popup__input_type_caption');
 const profileName = document.querySelector('.profile__name');
 const profileCaption = document.querySelector('.profile__caption');
 const confirmButton = confirmPopup.querySelector('.popup__save-button_type_confirm');
+const editSaveBtn = editPopup.querySelector('.popup__save-button');
+const addSaveBtn = addPopup.querySelector('.popup__save-button');
+const avatarSaveBtn = avatarPopup.querySelector('.popup__save-button');
 
 function showPopup(popup) {
   popup.classList.add('popup_opened');
@@ -30,12 +33,13 @@ function hidePopup(popup) {
 
 function handleEditFormSubmit(evt, config, url) {
   evt.preventDefault();
+  const originalText = editSaveBtn.textContent;
+  showLoading(true, editSaveBtn, '');
   const forms = {
     name: inputName.value,
     about: inputCaption.value
   }
-  setProfileInfo(config, url, forms, profileName, profileCaption)
-  hidePopup(editPopup);
+  setProfileInfo(config, url, forms, profileName, profileCaption, editPopup, editSaveBtn, originalText)
 }
 
 function handleConfirmPopup(cardId, cardElement) {
@@ -45,23 +49,23 @@ function handleConfirmPopup(cardId, cardElement) {
 
 function handleAddFormSubmit(evt, config, url) {
   evt.preventDefault();
+  const originalText = addSaveBtn.textContent;
+  showLoading(true, addSaveBtn, '')
   const forms = {
     name: inputTitle.value,
     link: inputLink.value
   }
-  postNewCard(config, url, forms)
-  hidePopup(addPopup);
-  evt.target.reset();
+  postNewCard(config, url, forms, addPopup, addSaveBtn, originalText);
 }
 
 function handleAvatarFormSubmit(evt, config, url) {
   evt.preventDefault();
+  const originalText = avatarSaveBtn.textContent;
+  showLoading(true, avatarSaveBtn, '');
   const form = {
     avatar: avatarInput.value
   };
-  setAvatar(config, url, form);
-  hidePopup(avatarPopup);
-  evt.target.reset();
+  setAvatar(config, url, form, avatarPopup, avatarSaveBtn, originalText);
 }
 
 function closeByEsc(evt) {
