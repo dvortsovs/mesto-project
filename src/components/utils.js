@@ -11,12 +11,10 @@ function getProfileInfo(config, url, profileName, profileCaption) {
       profileName.textContent = res.name;
       profileCaption.textContent = res.about;
       getAvatar(res.avatar, avatarElement);
+      getCards(config, config.urls.cards);
     })
     .catch((err) => {
       console.log(`Error: ${err}`);
-    })
-    .finally(() => {
-      getCards(config, config.urls.cards);
     });
 }
 
@@ -29,7 +27,7 @@ function getCards(config, url) {
     })
     .catch((err) => {
       console.log(`Error: ${err}`);
-    })
+    });
 }
 
 function setProfileInfo(config, url, body, name, caption, popup, btn, originalText) {
@@ -37,13 +35,12 @@ function setProfileInfo(config, url, body, name, caption, popup, btn, originalTe
     .then((res) => {
       name.textContent = res.name;
       caption.textContent = res.about;
-    })
-    .catch((err) => {
-      console.log(`Error: ${err}`);
-    })
-    .finally(() => {
       showLoading(false, btn, originalText);
       hidePopup(popup);
+    })
+    .catch((err) => {
+      showLoading(false, btn, originalText);
+      console.log(`Error: ${err}`);
     });
 }
 
@@ -51,14 +48,13 @@ function postNewCard(config, url, body, popup, btn, originalText) {
   queryPostRequests(config, url, body)
     .then((res) => {
       renderCard(addCard(res, config));
-    })
-    .catch((err) => {
-      console.log(`Error: ${err}`);
-    })
-    .finally(() => {
       showLoading(false, btn, originalText);
       hidePopup(popup);
       popup.querySelector('.popup__form').reset();
+    })
+    .catch((err) => {
+      showLoading(false, btn, originalText);
+      console.log(`Error: ${err}`);
     });
 }
 
@@ -77,14 +73,13 @@ function setAvatar(config, url, body, popup, btn, originalText) {
   queryPatchRequests(config, url, body)
     .then((res) => {
       getAvatar(res.avatar, avatarElement);
-    })
-    .catch((err) => {
-      console.log(`Error: ${err}`);
-    })
-    .finally(() => {
       showLoading(false, btn, originalText);
       hidePopup(popup);
       popup.querySelector('.popup__form').reset();
+    })
+    .catch((err) => {
+      showLoading(false, btn, originalText);
+      console.log(`Error: ${err}`);
     });
 }
 
