@@ -1,10 +1,9 @@
-import {setProfileInfo, postNewCard, deleteCard, setAvatar, showLoading} from "./utils.js";
-import {config} from "./constants.js";
+import {setProfileInfo, postNewCard, setAvatar, showLoading} from "./utils.js";
+
 
 const popups = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('.popup_type_edit');
 const addPopup = document.querySelector('.popup_type_add');
-const confirmPopup = document.querySelector('.popup_type_confirm');
 const avatarPopup = document.querySelector('.popup_type_avatar');
 const addForm = addPopup.querySelector('.popup__form');
 const inputTitle = addForm.querySelector('.popup__input_type_title');
@@ -16,7 +15,6 @@ const inputName = editForm.querySelector('.popup__input_type_name');
 const inputCaption = editForm.querySelector('.popup__input_type_caption');
 const profileName = document.querySelector('.profile__name');
 const profileCaption = document.querySelector('.profile__caption');
-const confirmButton = confirmPopup.querySelector('.popup__save-button_type_confirm');
 const editSaveBtn = editPopup.querySelector('.popup__save-button');
 const addSaveBtn = addPopup.querySelector('.popup__save-button');
 const avatarSaveBtn = avatarPopup.querySelector('.popup__save-button');
@@ -40,14 +38,6 @@ function handleEditFormSubmit(evt, config, url) {
     about: inputCaption.value
   };
   setProfileInfo(config, url, forms, profileName, profileCaption, editPopup, editSaveBtn, originalText);
-}
-
-function handleConfirmPopup(cardId, cardElement) {
-  showPopup(confirmPopup);
-  confirmButton.addEventListener('click', () => deleteCard(
-    config, config.urls.cards, cardId, confirmPopup, cardElement
-    )
-  );
 }
 
 function handleAddFormSubmit(evt, config, url) {
@@ -83,7 +73,6 @@ export {
   handleEditFormSubmit,
   handleAddFormSubmit,
   handleAvatarFormSubmit,
-  handleConfirmPopup,
   closeByEsc,
   popups,
   addPopup,

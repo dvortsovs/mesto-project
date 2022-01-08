@@ -58,10 +58,9 @@ function postNewCard(config, url, body, popup, btn, originalText) {
     });
 }
 
-function deleteCard(config, url, cardId, popup, cardElement) {
+function deleteCard(config, url, cardId, cardElement) {
   queryDeleteRequests(config, url, cardId)
     .then(() => {
-      hidePopup(popup);
       cardElement.remove();
     })
     .catch((err) => {
