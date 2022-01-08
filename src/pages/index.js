@@ -14,7 +14,6 @@ import {
   avatarPopup,
   addForm,
   editForm,
-  avatarForm,
   inputName,
   inputCaption,
   profileCaption,
@@ -25,9 +24,13 @@ const container = document.querySelector('.page');
 const editButton = container.querySelector('.profile__edit-button');
 const addButton = container.querySelector('.profile__add-button');
 const avatarButton = container.querySelector('.avatar__edit');
+const avatarForm = document.forms.avatar;
 const addCardForm = document.forms.add;
 const addCardInputList = Array.from(addCardForm.querySelectorAll(validateConfig.inputSelector));
 const addCardButtonElement = addCardForm.querySelector(validateConfig.submitButtonSelector);
+const avatarInputList = Array.from(avatarForm.querySelectorAll(validateConfig.inputSelector));
+const avatarButtonElement = avatarForm.querySelector(validateConfig.submitButtonSelector);
+
 
 getProfileInfo(config, config.urls.userInfo, profileName, profileCaption);
 
@@ -56,7 +59,7 @@ addButton.addEventListener('click', function () {
 });
 
 avatarButton.addEventListener('click', function () {
-  toggleButtonState(addCardInputList, addCardButtonElement, validateConfig);
+  toggleButtonState(avatarInputList, avatarButtonElement, validateConfig);
   showPopup(avatarPopup);
 });
 

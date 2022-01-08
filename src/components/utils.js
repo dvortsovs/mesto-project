@@ -35,12 +35,13 @@ function setProfileInfo(config, url, body, name, caption, popup, btn, originalTe
     .then((res) => {
       name.textContent = res.name;
       caption.textContent = res.about;
-      showLoading(false, btn, originalText);
       hidePopup(popup);
     })
     .catch((err) => {
-      showLoading(false, btn, originalText);
       console.log(`Error: ${err}`);
+    })
+    .finally(() => {
+      showLoading(false, btn, originalText);
     });
 }
 
@@ -48,13 +49,14 @@ function postNewCard(config, url, body, popup, btn, originalText) {
   queryPostRequests(config, url, body)
     .then((res) => {
       renderCard(addCard(res, config));
-      showLoading(false, btn, originalText);
       hidePopup(popup);
       popup.querySelector('.popup__form').reset();
     })
     .catch((err) => {
-      showLoading(false, btn, originalText);
       console.log(`Error: ${err}`);
+    })
+    .finally(() => {
+      showLoading(false, btn, originalText);
     });
 }
 
@@ -72,14 +74,15 @@ function setAvatar(config, url, body, popup, btn, originalText) {
   queryPatchRequests(config, url, body)
     .then((res) => {
       getAvatar(res.avatar, avatarElement);
-      showLoading(false, btn, originalText);
       hidePopup(popup);
       popup.querySelector('.popup__form').reset();
     })
     .catch((err) => {
-      showLoading(false, btn, originalText);
       console.log(`Error: ${err}`);
-    });
+    })
+    .finally(() => {
+      showLoading(false, btn, originalText);
+    })
 }
 
 function getAvatar(avatar, avatarElement) {
