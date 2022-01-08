@@ -1,5 +1,6 @@
-import {showPopup, handleConfirmPopup} from "./modal.js";
+import {showPopup} from "./modal.js";
 import {queryDeleteRequests, queryPutRequests} from "./api.js";
+import {deleteCard} from "./utils.js";
 
 const elementsList = document.querySelector('.elements__list');
 const imagePopup = document.querySelector('.popup_type_image');
@@ -36,6 +37,9 @@ function addCard(card, config) {
           likeCounter.textContent = res.likes.length;
           likeBtn.classList.remove('content-card__like-button_active');
         })
+        .catch((err) => {
+          console.log(`Error ${err}`);
+        });
     } else {
       addLike(config, card)
         .then((res) => {
@@ -43,12 +47,15 @@ function addCard(card, config) {
           likeCounter.textContent = res.likes.length;
           likeBtn.classList.add('content-card__like-button_active');
         })
+        .catch((err) => {
+          console.log(`Error ${err}`);
+        });
     }
   });
   if (!(card.owner._id === config.userId)) {
     deleteBtn.remove()
   } else {
-    deleteBtn.addEventListener('click',() => handleConfirmPopup(card._id, cardElement));
+    deleteBtn.addEventListener('click',() => deleteCard(config, config.urls.cards, card._id, cardElement));
   }
   return cardElement;
 }

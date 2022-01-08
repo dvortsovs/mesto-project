@@ -25,9 +25,9 @@ const container = document.querySelector('.page');
 const editButton = container.querySelector('.profile__edit-button');
 const addButton = container.querySelector('.profile__add-button');
 const avatarButton = container.querySelector('.avatar__edit');
-const form = document.forms.add;
-const inputList = Array.from(form.querySelectorAll(validateConfig.inputSelector));
-const buttonElement = form.querySelector(validateConfig.submitButtonSelector);
+const addCardForm = document.forms.add;
+const addCardInputList = Array.from(addCardForm.querySelectorAll(validateConfig.inputSelector));
+const addCardButtonElement = addCardForm.querySelector(validateConfig.submitButtonSelector);
 
 getProfileInfo(config, config.urls.userInfo, profileName, profileCaption);
 
@@ -51,12 +51,12 @@ editButton.addEventListener('click', function () {
 });
 
 addButton.addEventListener('click', function () {
-  toggleButtonState(inputList, buttonElement, validateConfig);
+  toggleButtonState(addCardInputList, addCardButtonElement, validateConfig);
   showPopup(addPopup);
 });
 
 avatarButton.addEventListener('click', function () {
-  toggleButtonState(inputList, buttonElement, validateConfig);
+  toggleButtonState(addCardInputList, addCardButtonElement, validateConfig);
   showPopup(avatarPopup);
 });
 
