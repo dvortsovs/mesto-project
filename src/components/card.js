@@ -36,6 +36,9 @@ function addCard(card, config) {
           likeCounter.textContent = res.likes.length;
           likeBtn.classList.remove('content-card__like-button_active');
         })
+        .catch((err) => {
+          console.log(`Error ${err}`);
+        });
     } else {
       addLike(config, card)
         .then((res) => {
@@ -43,6 +46,9 @@ function addCard(card, config) {
           likeCounter.textContent = res.likes.length;
           likeBtn.classList.add('content-card__like-button_active');
         })
+        .catch((err) => {
+          console.log(`Error ${err}`);
+        });
     }
   });
   if (!(card.owner._id === config.userId)) {
